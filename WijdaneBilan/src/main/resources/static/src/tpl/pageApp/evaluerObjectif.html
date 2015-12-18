@@ -22,17 +22,15 @@
 			 <th>Mesure</th>
 			 <th>Poids</th>
 			 <th>Résultat</th>
-			 
-			 <th>Num</th>
 			 <th>Action</th> 
           </tr>
 		  </thead>
 		  <tbody>
-		<tr ng-repeat="obj in objectifs">
-		  <td>{{obj[0]}}</td>        <td>{{obj[1]}}</td>        <td>{{obj[2]}}</td>
-		  <td>{{obj[3]}}</td>        <td>{{obj[4]}}</td> 		<td >{{obj[5]}}</td>
-		  <td>{{obj[6]}}</td>        <td editable-text="obj[7]">{{obj[7]}}</td>  <td ng-model="obj.idEvaluationObj">{{obj[8]}}</td>
-		  <td><button class="btn btn-sm btn-info" ng-click="evaluerObjectif(obj)">Envoyer{{obj[8]}}</button></td>
+		<tr ng-repeat="objet in objectifs">
+		  <td>{{objet[0].collaborateur.prenomUser}}</td>   <td>{{objet[0].collaborateur.nomUser}}</td>        <td>{{objet[0].collaborateur.matriculeUser}}</td>
+		  <td>{{objet[1].description}}</td>        <td>{{objet[1].categorie.nomCategorie}}</td> 		<td >{{objet[0].mesureObj}}</td>
+		  <td>{{objet[0].poidsObj}}</td>        <td ng-model="resultatObj" editable-text="objet[0].resultatObj">{{objet[0].resultatObj}}</td>  
+		  <td><button class="btn btn-sm btn-info" ng-click="evaluerObjectif(objet[0])">Envoyer</button></td>
 		</tr> 
         </tbody>
 		 <tfoot class="hide-if-no-paging">

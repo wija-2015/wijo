@@ -27,9 +27,8 @@ public interface IObjectifRepository extends JpaRepository<Objectif, Long>{
 	public List<Objectif> ficheCollab(@Param("idC")int idC);
 	
 	//Recuperer les objectifs à evaluer pour un encadrants
-		@Query("select ev.collaborateur.prenomUser,ev.collaborateur.nomUser,ev.collaborateur.matriculeUser,ev.objectif.description,"
-				+ "ev.objectif.categorie.nomCategorie, ev.mesureObj, ev.poidsObj, ev.resultatObj, ev.idEvaluationObj from EvaluationObjectif ev "
-				+ "where ev.encadrant.idEncadrant like :idE")
+		@Query("select ev,o from EvaluationObjectif ev, Objectif o where ev.encadrant.idEncadrant like :idE and "
+				+ "ev.objectif.idObjectif= o.idObjectif")
 		public List<Objectif> encadrantObjectifs(@Param("idE")int idE);
 
 	public List<Objectif> findAll();

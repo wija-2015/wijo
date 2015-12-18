@@ -53,15 +53,15 @@ app.controller('FicheCtrl',function(Evaluations,Collaborateur,Categorie,Encadran
 	    $scope.objectif.evaluations=[] ;
 	}
 	//Evaluer Objectif par encarant
-	$scope.evaluerObjectif=function(objectif){
+	$scope.evaluerObjectif=function(Objectif){
               	$http({
-              	    url: 'http://localhost:8181/objectifs/evaluerObjectif/'+objectif[8],
+              	    url: 'http://localhost:8181/objectifs/evaluerObjectif/'+Objectif.idEvaluationObj,
               	    method: 'PUT',
-              	    data:objectif
+              	    data:Objectif
               	})
               	.success(function(response) {
           		          console.log(response);
-          				  console.log(JSON.stringify($scope.collaborateur));
+          				  console.log(JSON.stringify($scope.Objectif));
           				  window.alert("Objectif évalué avec succés !");
           				  });
            };
