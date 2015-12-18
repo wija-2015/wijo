@@ -1,0 +1,50 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Gestions des collaborateurs</h1>
+</div>
+<div class="wrapper-md">
+   <div class="panel panel-default">
+    <div class ="panel-heading">
+      La liste des objectifs à évaluerrrrrrr
+    </div>
+	<div class="panel-body b-b b-light">
+      Rechercher: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+    </div>
+    <div class="table-responsive">
+	
+      <table  class="table m-b-none" data-filter="#filter" ui-jq="footable" data-page-size="5" ng-controller="FicheCtrl">
+        <thead>
+          <tr>
+            <th>Prénom Collaborateur</th>
+			 <th>Nom </th>
+			 <th>Matricule</th>
+			 <th>Description Objectif</th>
+			 <th>Catégorie Objectif</th>
+			 <th>Mesure</th>
+			 <th>Poids</th>
+			 <th>Résultat</th>
+			 
+			 <th>Num</th>
+			 <th>Action</th> 
+          </tr>
+		  </thead>
+		  <tbody>
+		<tr ng-repeat="obj in objectifs">
+		  <td>{{obj[0]}}</td>        <td>{{obj[1]}}</td>        <td>{{obj[2]}}</td>
+		  <td>{{obj[3]}}</td>        <td>{{obj[4]}}</td> 		<td >{{obj[5]}}</td>
+		  <td>{{obj[6]}}</td>        <td editable-text="obj[7]">{{obj[7]}}</td>  <td ng-model="obj.idEvaluationObj">{{obj[8]}}</td>
+		  <td><button class="btn btn-sm btn-info" ng-click="evaluerObjectif(obj)">Envoyer{{obj[8]}}</button></td>
+		</tr> 
+        </tbody>
+		 <tfoot class="hide-if-no-paging">
+          <tr>
+              <td colspan="5" class="text-center">
+                  <ul class="pagination"></ul>
+              </td>
+          </tr>
+        </tfoot>
+      </table>
+	  
+	  
+    </div>
+  </div>
+</div>

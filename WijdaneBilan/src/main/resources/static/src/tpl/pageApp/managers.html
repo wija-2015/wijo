@@ -1,0 +1,52 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Gestions des managers RH</h1>
+</div>
+<div class="wrapper-md">
+	<!--<button class="btn m-b-xs btn-sm btn-primary btn-addon" data-target="#ajouterCollab" data-toggle="modal">Ajouter un collaborateur</button>
+  -->
+   <div ng-controller="ModalDemoCtrlManager" class="panel b-a">
+          <script type="text/ng-template" id="myModalContent.html">
+            <div ng-include="'tpl/pageApp/modalManager.html'"></div>
+          </script>
+          <div class="panel-heading b-b b-light">Ajout des managers RH</div>
+          <div class="panel-body">
+            <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-click="open()">Ajouter Manager RH</button>
+          </div>
+      </div>
+  <div class="panel panel-default">
+    <div class ="panel-heading">
+      La liste des managers RH
+    </div>
+    <div class="panel-body b-b b-light">
+      Rechercher: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+    </div>
+    <div class="table-responsive">
+      <table  class="table m-b-none" data-filter="#filter" ui-jq="footable" data-page-size="5" ng-controller="ManagerCtrl">
+        <thead>
+          <tr>
+		     <th  style="width:15%">Prénom</th>
+            <th  style="width:15%">Nom </th>
+			 <th  style="width:15%">Matricule</th>
+		     <th  style="width:15%">Email</th>
+			 <th  style="width:15%">Action</th>
+          </tr>
+       </thead>	
+       <tbody>	   
+		  <tr ng-repeat="c in managers"><td editable-text="c.nomUser">{{c.nomUser || empty}}</td><td editable-text="c.prenomUser">{{c.prenomUser || empty}}</td>
+		  <td editable-text="c.matriculeUser">{{c.matriculeUser || empty}}</td><td editable-text="c.mailUser">{{c.mailUser || empty}}</td>
+		  <td><button class="btn btn-info" ng-click="modifier(c)">Modifier</button></td>
+		  </tr>
+       </tbody>
+	   <tfoot class="hide-if-no-paging">
+          <tr>
+              <td colspan="5" class="text-center">
+                  <ul class="pagination"></ul>
+              </td>
+          </tr>
+        </tfoot>
+      </table>
+	  
+	  
+    </div>
+  </div>
+</div>

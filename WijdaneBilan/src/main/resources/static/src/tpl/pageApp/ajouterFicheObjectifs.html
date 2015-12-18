@@ -1,0 +1,66 @@
+<div class="bg-light lter b-b wrapper-md" >
+  <h1 class="m-n font-thin h3">Ajout de fiches d'objectifs d'un collaborateur  </h1>
+</div>
+<div class="wrapper-md" ng-controller="FicheCtrl">
+	
+	   <div class="panel b-a">
+         
+          <div class="panel-body">
+		       <div class="col-sm-2">Choisir Matricule Collaborateur</div>
+			   <form>
+			   <div class="col-sm-2">
+                  <select value="Selectionner Collaborateur" ng-model="objectif.idCollaborateur" ng-change="chargerCollab()">
+			               <option ng-repeat="c in collaborateurs" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
+			       </select>  			   
+			   </div>
+           </div>
+	</div>
+	      
+<div ng-if="collab">{{collab.nomUser}}{{objectif.idManager}}          
+   <table class="table table-bordered table-hover table-condensed bg-white-only">
+    <tr style="font-weight: bold">
+      <td>Catégorie</td>
+      <td>Description</td>
+	  <td>Mesure</td>
+	  <td>Responsable Mesure</td>
+	  <td>Poids</td>
+      <td>Autoriser la lecture</td>
+      <td>Action</td>
+    </tr>
+    <tr>
+        <td class="v-middle"><select value="Selectionner Catégorie" ng-model="objectif.idCategorie">
+			                      <option ng-repeat="c in categories" ng-value="c.idCategorie">{{c.nomCategorie}}</option>
+			                 </select> 
+		</td>
+		<td class="v-middle"><input type="text" class="form-control" placeholder="Description" ng-model="objectif.description" required ></td>
+		<td class="v-middle"><input type="text" class="form-control" placeholder="Mesure 1" ng-model="objectif.evaluations[0].mesureObj" required >
+		                    <input type="text" class="form-control" placeholder="Mesure 2" ng-model="objectif.evaluations[1].mesureObj" required >
+							  <input type="text" class="form-control" placeholder="Mesure 3" ng-model="objectif.evaluations[2].mesureObj" required >
+		</td>
+		<td class="v-middle"><select value="Selectionner Evaluateur" ng-model="objectif.evaluations[0].idEncadrant">
+			                      <option ng-repeat="e in encadrants" ng-value="e.idEncadrant">{{e.matriculeUser}}</option>
+			                 </select><br></br>
+                           <select value="Selectionner Evaluateur" ng-model="objectif.evaluations[1].idEncadrant">
+			                      <option ng-repeat="e in encadrants" ng-value="e.idEncadrant">{{e.matriculeUser}}</option>
+			                 </select><br></br>
+                            <select value="Selectionner Evaluateur" ng-model="objectif.evaluations[2].idEncadrant">
+			                      <option ng-repeat="e in encadrants" ng-value="e.idEncadrant">{{e.matriculeUser}}</option>
+			                 </select>							 
+		</td>
+		<td class="v-middle"><input type="number" class="form-control" placeholder="Poids" ng-model="objectif.evaluations[0].poidsObj" required >
+                           <input type="number" class="form-control" placeholder="Poids" ng-model="objectif.evaluations[1].poidsObj" required >		
+ 		                    <input type="number" class="form-control" placeholder="Poids" ng-model="objectif.evaluations[2].poidsObj" required >
+		</td>
+		
+		<td class="v-middle">
+		<!--     <input type="checkbox" name="autoriser" ng-value="oui" ng-model="objectif.autoriser" ng-init="objectif.autoriser='non'"/>Oui 
+		                    <input type="radio" name="autoriser" value="non" checked="checked"/>Non   -->
+		</td> 
+       <td class="v-middle"><button class="btn btn-info" ng-click="inserer_objectif()">Envoyer</button></td>
+		
+    </tr>
+  </table>
+  {{objectif}}
+	   
+	</div>
+</div>
