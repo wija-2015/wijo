@@ -29,7 +29,7 @@ app.factory('Collaborateur', function($http) {
   var FicheObjectif = {
     findFicheObjectif: function() {
       if ( !promise ) {
-         promise = $http.get("http://localhost:8181/objectifs//ficheCollab/"+$window.sessionStorage.idUser).then(function (response) {
+         promise = $http.get("http://localhost:8181/objectifs/ficheCollab/"+$window.sessionStorage.idUser).then(function (response) {
           console.log(response);
           return response.data;
         });

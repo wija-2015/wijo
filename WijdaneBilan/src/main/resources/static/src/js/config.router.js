@@ -88,9 +88,9 @@ angular.module('app')
                   templateUrl: 'tpl/pageApp/ancienEvaluation.html' ,
                   access: { requiredAuthentication: true }
               })
-			  .state('app.consulterAnciensBap', {
-                  url: '/anciensBap',
-                  templateUrl: 'tpl/pageApp/consulterAnciensBap.html',
+			  .state('app.consulterAnciensBapsAdmin', {
+                  url: '/consulterAnciensBapsAdmin',
+                  templateUrl: 'tpl/pageApp/consulterAnciensBapsAdmin.html',
 				  access: { requiredAuthentication: true }
               })
 			  .state('app.ajouterFicheObjectifs', {

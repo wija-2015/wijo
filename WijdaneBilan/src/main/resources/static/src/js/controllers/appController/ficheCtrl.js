@@ -1,8 +1,9 @@
-app.controller('FicheCtrl',function(Evaluations,Collaborateur,Categorie,Encadrant,$filter,$http,$scope,$window,$rootScope,$window){
+app.controller('FicheCtrl',function(ManagerCollabs,Evaluations,Collaborateur,Categorie,Encadrant,$filter,$http,$scope,$window,$rootScope,$window){
+	$scope.iduse=$window.sessionStorage.idUser;
 	Encadrant.findAll().then(function(d) {
               $scope.encadrants = d;
             }); 
-   Collaborateur.findAll().then(function(d) {
+    Collaborateur.findAll().then(function(d) {
               $scope.collaborateurs = d;
             });
 	Categorie.findAll().then(function(d) {
@@ -10,15 +11,10 @@ app.controller('FicheCtrl',function(Evaluations,Collaborateur,Categorie,Encadran
             });
     Evaluations.findEvaluations().then(function(d) {
               $scope.objectifs = d;
+            }); 
+    ManagerCollabs.findCollabs().then(function(d) {
+              $scope.collabs = d;
             }); 			
-    /* $scope.collabs=[];			
-	$scope.chargerManagerCollabs=function(){
-		$http.get("http://localhost:8181/managers/collabs/"+$scope.iduse)
-		.success(function(data){
-		$scope.collabs=data;
-		console.log(data);
-		});
-		}; */
     $scope.chargerCollab=function(){
 		$http.get("http://localhost:8181/collaborateurs/collab/"+$scope.objectif.idCollaborateur)
 		.success(function(data){

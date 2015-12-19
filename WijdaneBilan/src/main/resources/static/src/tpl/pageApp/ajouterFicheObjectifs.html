@@ -6,11 +6,11 @@
 	   <div class="panel b-a">
          
           <div class="panel-body">
-		       <div class="col-sm-2">Choisir Matricule Collaborateur</div>
-			   <form>
+		       <div class="col-sm-2">Choisir Matricule Collaborateur</div> 
+			   <form> {{iduse}}
 			   <div class="col-sm-2">
                   <select value="Selectionner Collaborateur" ng-model="objectif.idCollaborateur" ng-change="chargerCollab()">
-			               <option ng-repeat="c in collaborateurs" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
+			               <option ng-repeat="c in collabs" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
 			       </select>  			   
 			   </div>
            </div>
@@ -19,6 +19,7 @@
 <div ng-if="collab">{{collab.nomUser}}{{objectif.idManager}}          
    <table class="table table-bordered table-hover table-condensed bg-white-only">
     <tr style="font-weight: bold">
+	  <td>Date:</td>
       <td>Catégorie</td>
       <td>Description</td>
 	  <td>Mesure</td>
@@ -28,6 +29,7 @@
       <td>Action</td>
     </tr>
     <tr>
+	    <td class="v-middle"><input type="date" class="form-control" placeholder="Date" ng-model="objectif.dateObjectif" required></td>
         <td class="v-middle"><select value="Selectionner Catégorie" ng-model="objectif.idCategorie">
 			                      <option ng-repeat="c in categories" ng-value="c.idCategorie">{{c.nomCategorie}}</option>
 			                 </select> 
