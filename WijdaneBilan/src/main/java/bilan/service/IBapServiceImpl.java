@@ -1,5 +1,6 @@
 package bilan.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import bilan.dao.IBapRepository;
 import bilan.entities.Bap;
+import bilan.entities.Objectif;
 
 /**
  * @author WIJDANE
@@ -19,34 +21,15 @@ public class IBapServiceImpl implements IBapService{
 	
 	@Autowired
 	private IBapRepository bapRepository;
-
+	
 	@Override
-	public List<Bap> toutsBaps() {
+	public List<Bap> collabBaps(int idC) {
 		// TODO Auto-generated method stub
-		return bapRepository.findAllBaps();
+		return bapRepository.collabBaps(idC);
 	}
-
 	@Override
-	public Bap ajouterBap(Bap a) {
-		// TODO Auto-generated method stub
-		return bapRepository.save(a);
-	}
-
-	@Override
-	public Bap trouverBap(int id) {
-		return bapRepository.findBap(id);
-	}
-
-	@Override
-	public int supprimerBap(int id) {
-		// TODO Auto-generated methBap(id);
-		return bapRepository.deleteBap(id);
-	}
-
-	@Override
-	public int modifierBap(String mode, int id) {
-		// TODO Auto-generated method stub
-		return bapRepository.updateBap(mode, id);
+	public List<Objectif> ficheObjectifs(int idC, String dateObjectif) {
+		return bapRepository.ficheObjectifs(idC, dateObjectif);
 	}
 
 	public IBapRepository getBapRepository() {
@@ -56,6 +39,7 @@ public class IBapServiceImpl implements IBapService{
 	public void setBapRepository(IBapRepository bapRepository) {
 		this.bapRepository = bapRepository;
 	}
+
 	
 	
 }

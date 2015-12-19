@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.util.Collection;
+import java.util.Date;
 
 
 @Entity
@@ -15,9 +16,8 @@ public class Objectif implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idObjectif;
 	private String description;
-	private String diffBapBip;
-	private String moyenObj;
 	private int autoriser;
+	private Date dateObjectif;
 	
 	//bi-directional many-to-one association to Evaluationobjectif
 	@OneToMany(mappedBy="objectif")
@@ -50,8 +50,6 @@ public class Objectif implements Serializable {
 		super();
 		this.idObjectif = idObjectif;
 		this.description = description;
-		this.diffBapBip = diffBapBip;
-		this.moyenObj = moyenObj;
 		this.evaluationobjectifs = evaluationobjectifs;
 		this.categorie = categorie;
 	}
@@ -70,22 +68,6 @@ public class Objectif implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getDiffBapBip() {
-		return this.diffBapBip;
-	}
-
-	public void setDiffBapBip(String diffBapBip) {
-		this.diffBapBip = diffBapBip;
-	}
-
-	public String getMoyenObj() {
-		return this.moyenObj;
-	}
-
-	public void setMoyenObj(String moyenObj) {
-		this.moyenObj = moyenObj;
 	}
 
 	public Categorie getCategorie() {
@@ -110,6 +92,14 @@ public class Objectif implements Serializable {
 
 	public void setAutoriser(int autoriser) {
 		this.autoriser = autoriser;
+	}
+
+	public Date getDateObjectif() {
+		return dateObjectif;
+	}
+
+	public void setDateObjectif(Date dateObjectif) {
+		this.dateObjectif = dateObjectif;
 	}
 	
 

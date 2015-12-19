@@ -1,18 +1,18 @@
 package bilan.dtos;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ObjectifDTO {
 	
 	private int idObjectif;
 	private String description;
-	private String diffBapBip;
-	private String moyenObj;
 	private int idCategorie;
 	private int idCollaborateur;
 	private int idManager;
 	private int autoriser;
+	private Date dateObjectif;
 	
 	public int getAutoriser() {
 		return autoriser;
@@ -46,19 +46,6 @@ public class ObjectifDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getDiffBapBip() {
-		return diffBapBip;
-	}
-	public void setDiffBapBip(String diffBapBip) {
-		this.diffBapBip = diffBapBip;
-	}
-	public String getMoyenObj() {
-		return moyenObj;
-	}
-	public void setMoyenObj(String moyenObj) {
-		this.moyenObj = moyenObj;
-	}
-
 	public int getIdCategorie() {
 		return idCategorie;
 	}
@@ -71,5 +58,12 @@ public class ObjectifDTO {
 	public void setIdCollaborateur(int idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
+	public Date getDateObjectif() {
+		return dateObjectif;
+	}
+	public void setDateObjectif(Date dateObjectif) {
+		this.dateObjectif = dateObjectif;
+	}
+	
 	
 }

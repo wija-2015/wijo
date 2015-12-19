@@ -1,22 +1,20 @@
 package bilan.service;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.data.repository.query.Param;
 
 import bilan.entities.Admin;
 import bilan.entities.Bap;
 import bilan.entities.Managerrh;
+import bilan.entities.Objectif;
 
 public interface IBapService {
 	
-	public List<Bap> toutsBaps();
-
-	public Bap ajouterBap(Bap a);
 	
-	public Bap trouverBap(int id);
+	public List<Bap> collabBaps(int idC);
 	
-	public int supprimerBap(int id);
+	public List<Objectif> ficheObjectifs(int idC, String dateObjectif);
 	
-	public int modifierBap(String mode, int id);
-	
-
 }

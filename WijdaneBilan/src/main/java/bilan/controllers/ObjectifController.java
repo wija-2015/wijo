@@ -63,9 +63,8 @@ public boolean saveObjectif(@RequestBody ObjectifDTO o,HttpServletResponse respo
 	cat=categorieService.trouverCategorie(o.getIdCategorie()) ;
 	obj.setCategorie(cat);
 	obj.setDescription(o.getDescription());
-	obj.setDiffBapBip(o.getDiffBapBip());
-	obj.setMoyenObj(o.getMoyenObj());
 	obj.setAutoriser(o.getAutoriser());
+	obj.setDateObjectif(o.getDateObjectif());
 	Managerrh manager=new Managerrh();
 	manager=managerService.trouverManager(o.getIdManager());
 	obj.setManagerrh(manager);

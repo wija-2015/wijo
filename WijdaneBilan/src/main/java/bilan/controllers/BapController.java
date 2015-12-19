@@ -1,5 +1,6 @@
 package bilan.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bilan.dao.IAdminRepository;
+import bilan.entities.Collaborateur;
 import bilan.entities.Managerrh;
 import bilan.entities.Bap;
+import bilan.entities.Objectif;
 import bilan.service.IBapService;
 
 @RestController
@@ -23,31 +26,15 @@ public class BapController {
 @Autowired
 private IBapService bapService;
 
-@RequestMapping(value="findAll", method = RequestMethod.GET)
-public List<Bap> getBaps(){
-return bapService.toutsBaps();
-}
-@RequestMapping(value="save", method = RequestMethod.GET)
-public Bap saveBap(Bap c){
-return bapService.ajouterBap(c);
-}
-@RequestMapping(value="/{id}", method = RequestMethod.GET)
-public Bap findAdmin(@PathVariable("id") int id){
-	return bapService.trouverBap(id);
-}
-@RequestMapping(value="/update/{id}/{mode}", method = RequestMethod.GET)
-public int updateAdmin(@PathVariable("nom") String mode, @PathVariable("id") int id){
-	 return bapService.modifierBap(mode, id);
-}
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteManager(@PathVariable("id") int id){
- return bapService.supprimerBap(id);
+//trouver les baps d'un collaborateur
+@RequestMapping(value="/collabBaps/{idC}", method = RequestMethod.GET)
+public List<Bap> collabBaps(@PathVariable("idC") int idC){
+	return bapService.collabBaps(idC);
 }
 
-public IBapService getBapService() {
-	return bapService;
-}
-public void setBapService(IBapService bapService) {
-	this.bapService = bapService;
+//Trouver la fiche d'objectifs du Bap de l'année y et du collaborateur x
+@RequestMapping(value="/ficheObjectifs/{idC}/{date}", method = RequestMethod.GET)
+public List<Objectif> ficheObjectifs(@PathVariable("idC") int idC, @PathVariable("date") String dateObjectif){
+	return bapService.ficheObjectifs(idC, dateObjectif);
 }
 }

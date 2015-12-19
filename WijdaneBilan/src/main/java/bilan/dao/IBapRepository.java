@@ -1,5 +1,6 @@
 package bilan.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,24 +10,24 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import bilan.entities.Bap;
+import bilan.entities.Feedback;
+import bilan.entities.Objectif;
 
 public interface IBapRepository extends JpaRepository<Bap, Long>{
 	
+	//Trouver tous les bap d'un collaborateur
+	@Query("select b from Bap b where b.collaborateur.idCollaborateur like :x")
+	public List<Bap> collabBaps(@Param("x")int idC);
 	
-	@Query("select a from Bap a where a.idBap like :x")
-	public Bap findBap(@Param("x")int id);
+	//Trouver la fiche d'objectifs du Bap de l'année y et du collaborateur x
+	@Query("select o from Objectif o, EvaluationObjectif ev where ev.collaborateur.idCollaborateur like :x and "
+			+ "o.idObjectif=ev.objectif.idObjectif and to_char(o.dateObjectif,'YYYY/MM') =:y")
+	public List<Objectif> ficheObjectifs(@Param("x")int idC, @Param("y")String dateObjectif);
 	
-	@Modifying
-	@Transactional
-	@Query("delete Bap a where a.idBap = ?1")
-	public int deleteBap(int id);
+	//Trouver les feedbacks du Bap de l'annee y et du collaborateur x
+	@Query("select f from Feedback f, Bap b where f.collaborateur.idCollaborateur like :x and b.collaborateur.idCollaborateur="
+			+ "f.collaborateur.idCollaborateur and b.dateBap like :y")
+	public List<Feedback> collabFeedbacks(@Param("x")int idC, @Param("y")Date dateBap);
 	
-	@Modifying
-	@Transactional
-	@Query("update Bap a set a.mode= :mode where a.idBap = :x")
-	public int updateBap(@Param("mode")String mode, @Param("x")int id);
-	
-	@Query("select m.dateBap,m.status,m.mode,m.poste,m.noteFinaleBap from Bap m")
-	public List<Bap> findAllBaps();
 	
 }
