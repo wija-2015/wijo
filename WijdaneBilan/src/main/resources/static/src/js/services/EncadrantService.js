@@ -27,4 +27,19 @@ app.factory('Encadrant', function($http) {
     }
   };
   return Evaluations;
+})
+.factory('ObjectifsEvalues', function($http,$window) {
+  var promise;
+  var ObjectifsEvalues = {
+    findObjectifsEvalues: function() {
+      if ( !promise ) {
+        promise = $http.get("http://localhost:8181/objectifs/encadrantObjectifsEvalues/"+$window.sessionStorage.idUser).then(function (response) {
+          console.log(response);
+          return response.data;
+        });
+      }
+      return promise;
+    }
+  };
+  return ObjectifsEvalues;
 });

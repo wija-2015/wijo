@@ -23,13 +23,27 @@ public interface IObjectifRepository extends JpaRepository<Objectif, Long>{
 	@Query("update Objectif a set a.description= :desc where a.idObjectif = :x")
 	public int updateAObjectif(@Param("desc")String desc, @Param("x")int id);
 	
-	@Query("select distinct o from Objectif o,EvaluationObjectif ev where o.idObjectif= ev.objectif.idObjectif and ev.collaborateur.idCollaborateur like :idC")
+	@Query("select distinct o from Objectif o,EvaluationObjectif ev, Bap bap where o.idObjectif= ev.objectif.idObjectif and "
+			+ "ev.collaborateur.idCollaborateur=bap.collaborateur.idCollaborateur and "
+			+ "ev.collaborateur.idCollaborateur like :idC and o.dateObjectif >= all (select b.dateBap from Bap b where "
+			+ " b.collaborateur.idCollaborateur like :idC)")
 	public List<Objectif> ficheCollab(@Param("idC")int idC);
 	
-	//Recuperer les objectifs à evaluer pour un encadrants
-		@Query("select ev,o from EvaluationObjectif ev, Objectif o where ev.encadrant.idEncadrant like :idE and "
-				+ "ev.objectif.idObjectif= o.idObjectif")
+	/*@Query("select distinct o from Objectif o,EvaluationObjectif ev, Bap bap where o.idObjectif= ev.objectif.idObjectif and "
+			+ "ev.collaborateur.idCollaborateur=bap.collaborateur.idCollaborateur and "
+			+ "ev.collaborateur.idCollaborateur like :idC and bap.collaborateur.idCollaborateur like :idC and "
+			+ "o.dateObjectif > max(bap.dateBap)")
+	public List<Objectif> ficheCollab(@Param("idC")int idC);*/
+	
+	//Recuperer les objectifs à evaluer d'un encadrant
+	@Query("select ev,o from EvaluationObjectif ev, Objectif o where ev.encadrant.idEncadrant like :idE and "
+				+ "ev.objectif.idObjectif= o.idObjectif and ev.resultatObj =0")
 		public List<Objectif> encadrantObjectifs(@Param("idE")int idE);
+	
+	//Recuperer les objectifs déja évalués d'un encadrants
+	@Query("select ev,o from EvaluationObjectif ev, Objectif o where ev.encadrant.idEncadrant like :idE and "
+					+ "ev.objectif.idObjectif= o.idObjectif and ev.resultatObj <>0")
+			public List<Objectif> encadrantObjectifsEvalues(@Param("idE")int idE);
 
 	public List<Objectif> findAll();
 	

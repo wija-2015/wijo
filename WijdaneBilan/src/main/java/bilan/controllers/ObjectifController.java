@@ -108,6 +108,11 @@ public List<Objectif> getFicheObjectifs(@PathVariable("idCollaborateur") int idC
 public List<Objectif> encadrantObjectifs(@PathVariable("idE") int idE) {	
 return objectifService.encadrantObjectifs(idE);
 }
+
+@RequestMapping(value="/encadrantObjectifsEvalues/{idE}",method=RequestMethod.GET)
+public List<Objectif> encadrantObjectifsEvalues(@PathVariable("idE") int idE) {	
+return objectifService.encadrantObjectifsEvalues(idE);
+}
 @RequestMapping(value="/evaluerObjectif/{idEvaluation}", method = RequestMethod.PUT,consumes={"application/json"},produces ={"application/json"})
 public int evaluer(@PathVariable("idEvaluation")  int idEvaluation,@RequestBody EvaluationObjectifDTO dto){
 	 return evaluationObjectifService.evaluerObjectif(dto, idEvaluation);

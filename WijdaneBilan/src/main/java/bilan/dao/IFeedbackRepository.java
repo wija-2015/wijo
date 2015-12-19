@@ -18,10 +18,16 @@ public interface IFeedbackRepository extends JpaRepository<Feedback, Long>{
 		
 	@Query("select a from Feedback a where a.collaborateur.idCollaborateur like :x and a.encadrant.idEncadrant like :y")
 	public Page<Feedback> encadrantFeedbacks(@Param("x")int idC, @Param("y")int idE,Pageable p);
-	@Query("select a from Feedback a where a.collaborateur.idCollaborateur like :x")
+	
+	//Trouver les feedbacks de l'année courante d'un collaborateur x
+	@Query("select a from Feedback a where a.collaborateur.idCollaborateur like :x and "
+			+ "a.dateDebut > all (select b.dateBap from Bap b where "
+			+ " b.collaborateur.idCollaborateur like :x)")
 	public Page<Feedback> adminFeedbacks(@Param("x")int idC,Pageable p);
+	
 	@Query("select a from Feedback a where a.collaborateur.idCollaborateur like :x")
 	public Page<Feedback> managerFeedbacks(@Param("x")int idC, Pageable p);
+	
 	@Query("select a from Feedback a where a.collaborateur.idCollaborateur like :x")
 	public Page<Feedback> collabFeedbacks(@Param("x")int idC,Pageable p);
 	

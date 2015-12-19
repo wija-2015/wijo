@@ -10,7 +10,7 @@
 			   
 			   <div class="col-sm-2">Choisir Matricule Collaborateur</div>
 			   <div class="col-sm-2">
-                  <select value="Selectionner Collaborateur" ng-model="idCollaborateur" ng-change="chargerFicheObjectifs()">
+                  <select class="form-control m-t" value="Selectionner Collaborateur" ng-model="idCollaborateur" ng-change="chargerFicheObjectifs()">
 			               <option ng-repeat="c in collaborateurs" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
 			       </select> 			   
 			   </div>

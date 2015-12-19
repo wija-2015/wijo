@@ -18,4 +18,6 @@ public interface IObjectifService {
 	
 	public List<Objectif> encadrantObjectifs(int idE);
 	
+	public List<Objectif> encadrantObjectifsEvalues(int idE);
+	
 }

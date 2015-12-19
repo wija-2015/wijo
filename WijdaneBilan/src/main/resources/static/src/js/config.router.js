@@ -59,23 +59,28 @@ angular.module('app')
                   access: { requiredAuthentication: true }
               })
 			  .state('app.consulterFeedbackEncadrant', {
-                  url: '/consulterFeedback',
+                  url: '/consulterFeedbackEncadrant',
                   templateUrl: 'tpl/pageApp/consulterFeedbackEncadrant.html' ,
                   access: { requiredAuthentication: true }
               })
 			  .state('app.consulterFeedbackAdmin', {
-                  url: '/consulterFeedback',
+                  url: '/consulterFeedbackAdmin',
                   templateUrl: 'tpl/pageApp/consulterFeedbackAdmin.html' ,
                   access: { requiredAuthentication: true }
               })
 			  .state('app.consulterFeedbackManager', {
-                  url: '/consulterFeedback',
+                  url: '/consulterFeedbackManager',
                   templateUrl: 'tpl/pageApp/consulterFeedbackManager.html' ,
                   access: { requiredAuthentication: true }
               })
 			  .state('app.evaluerObjectif', {
                   url: '/evaluerObjectif',
                   templateUrl: 'tpl/pageApp/evaluerObjectif.html' ,
+                  access: { requiredAuthentication: true }
+              })
+			  .state('app.consulterObjectifsEvalues', {
+                  url: '/ObjectifsEvalues',
+                  templateUrl: 'tpl/pageApp/consulterObjectifsEvalues.html' ,
                   access: { requiredAuthentication: true }
               })
 			  .state('app.ancienFeedback', {
@@ -93,24 +98,29 @@ angular.module('app')
                   templateUrl: 'tpl/pageApp/consulterAnciensBapsAdmin.html',
 				  access: { requiredAuthentication: true }
               })
+			  .state('app.consulterAnciensBapsManager', {
+                  url: '/consulterAnciensBapsManager',
+                  templateUrl: 'tpl/pageApp/consulterAnciensBapsManager.html',
+				  access: { requiredAuthentication: true }
+              })
 			  .state('app.ajouterFicheObjectifs', {
-                  url: '/ficheObjectifs',
+                  url: '/AjouterFicheObjectifs',
                   templateUrl: 'tpl/pageApp/ajouterFicheObjectifs.html' ,
                   access: { requiredAuthentication: true }
               })
-			  .state('app.consulterFicheObjectifs', {
-                  url: '/ficheObjectifss',
-                  templateUrl: 'tpl/pageApp/consulterFicheObjectifs.html',
+			  .state('app.consulterFicheObjectifsManager', {
+                  url: '/consulterFicheManager',
+                  templateUrl: 'tpl/pageApp/consulterFicheObjectifsManager.html',
 				  access: { requiredAuthentication: true }
               })
 			  .state('app.consulterFicheObjectifsAdmin', {
-                  url: '/ficheObjectifsAdmin',
+                  url: '/consulterFicheAdmin',
                   templateUrl: 'tpl/pageApp/consulterFicheObjectifsAdmin.html',
 				  access: { requiredAuthentication: true }
               })
-			  .state('app.consulterFicheCourante', {
-                  url: '/consulterFicheCourante',
-                  templateUrl: 'tpl/pageApp/consulterFicheCourante.html',
+			  .state('app.consulterFicheObjectifsCollab', {
+                  url: '/consulterFicheCollab',
+                  templateUrl: 'tpl/pageApp/consulterFicheObjectifsCollab.html',
 				  access: { requiredAuthentication: true }
               })
 			  .state('app.consulterFicheProchaine', {

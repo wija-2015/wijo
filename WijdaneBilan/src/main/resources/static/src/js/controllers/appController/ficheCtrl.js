@@ -1,4 +1,4 @@
-app.controller('FicheCtrl',function(ManagerCollabs,Evaluations,Collaborateur,Categorie,Encadrant,$filter,$http,$scope,$window,$rootScope,$window){
+app.controller('FicheCtrl',function(ManagerCollabs,ObjectifsEvalues,Evaluations,Collaborateur,Categorie,Encadrant,$filter,$http,$scope,$window,$rootScope,$window){
 	$scope.iduse=$window.sessionStorage.idUser;
 	Encadrant.findAll().then(function(d) {
               $scope.encadrants = d;
@@ -11,7 +11,10 @@ app.controller('FicheCtrl',function(ManagerCollabs,Evaluations,Collaborateur,Cat
             });
     Evaluations.findEvaluations().then(function(d) {
               $scope.objectifs = d;
-            }); 
+            });
+    ObjectifsEvalues.findObjectifsEvalues().then(function(d) {
+              $scope.objectifsEvalues = d;
+            }); 			
     ManagerCollabs.findCollabs().then(function(d) {
               $scope.collabs = d;
             }); 			

@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md" >
-  <h1 class="m-n font-thin h3">Ajout de fiches d'objectifs d'un collaborateur  </h1>
+  <h1 class="m-n font-thin h3">Ajout de Fiche d'Objectifs d'un Collaborateur  </h1>
 </div>
 <div class="wrapper-md" ng-controller="FicheCtrl">
 	
@@ -7,16 +7,16 @@
          
           <div class="panel-body">
 		       <div class="col-sm-2">Choisir Matricule Collaborateur</div> 
-			   <form> {{iduse}}
+			   <form>
 			   <div class="col-sm-2">
-                  <select value="Selectionner Collaborateur" ng-model="objectif.idCollaborateur" ng-change="chargerCollab()">
+                  <select class="form-control m-t" value="Selectionner Collaborateur" ng-model="objectif.idCollaborateur" ng-change="chargerCollab()">
 			               <option ng-repeat="c in collabs" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
 			       </select>  			   
 			   </div>
            </div>
 	</div>
 	      
-<div ng-if="collab">{{collab.nomUser}}{{objectif.idManager}}          
+<div ng-if="collab">        
    <table class="table table-bordered table-hover table-condensed bg-white-only">
     <tr style="font-weight: bold">
 	  <td>Date:</td>
@@ -62,7 +62,6 @@
 		
     </tr>
   </table>
-  {{objectif}}
 	   
 	</div>
 </div>

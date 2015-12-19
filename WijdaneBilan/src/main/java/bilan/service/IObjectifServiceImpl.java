@@ -56,5 +56,10 @@ public class IObjectifServiceImpl implements IObjectifService{
 		// TODO Auto-generated method stub
 		return objectifRepository.encadrantObjectifs(idE);
 	}
+	@Override
+	public List<Objectif> encadrantObjectifsEvalues(int idE) {
+		// TODO Auto-generated method stub
+		return objectifRepository.encadrantObjectifsEvalues(idE);
+	}
 
 }

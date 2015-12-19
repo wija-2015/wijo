@@ -33,6 +33,7 @@ app.controller("adminCtrl",function(Collaborateur,$rootScope,$scope,$http,$state
 		    console.log(data);
 		});
 		};
+		
 		$scope.idCollaborateur=null;
 		$scope.chargerFicheObjectifs=function(){
 		$http.get("http://localhost:8181/objectifs/ficheCollab/"+$scope.idCollaborateur)

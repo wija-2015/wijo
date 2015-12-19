@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Liste des Objectifs à Evaluer</h1>
+  <h1 class="m-n font-thin h3">Liste Objectifs Déja Evalués</h1>
 </div>
 <div class="wrapper-md">
    <div class="panel panel-default">
@@ -22,15 +22,13 @@
 			 <th>Mesure</th>
 			 <th>Poids</th>
 			 <th>Résultat</th>
-			 <th>Action</th> 
           </tr>
 		  </thead>
 		  <tbody>
-		<tr ng-repeat="objet in objectifs">
+		<tr ng-repeat="objet in objectifsEvalues">
 		  <td>{{objet[0].collaborateur.prenomUser}}</td>   <td>{{objet[0].collaborateur.nomUser}}</td>        <td>{{objet[0].collaborateur.matriculeUser}}</td>
 		  <td>{{objet[1].description}}</td>        <td>{{objet[1].categorie.nomCategorie}}</td> 		<td >{{objet[0].mesureObj}}</td>
-		  <td>{{objet[0].poidsObj}}</td>        <td ng-model="resultatObj" editable-text="objet[0].resultatObj">{{objet[0].resultatObj}}</td>  
-		  <td><button class="btn btn-sm btn-info" ng-click="evaluerObjectif(objet[0])">Envoyer</button></td>
+		  <td>{{objet[0].poidsObj}}</td>        <td>{{objet[0].resultatObj}}</td>  
 		</tr> 
         </tbody>
 		 <tfoot class="hide-if-no-paging">
@@ -46,3 +44,5 @@
     </div>
   </div>
 </div>
+
+

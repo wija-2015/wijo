@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Consulter fiche d'objectifs d'un collaborateur</h1>
+  <h1 class="m-n font-thin h3">Fiche d'Objectifs</h1>
 </div>
 <div class="wrapper-md" ng-controller="CollaborateurCtrl">
 	
@@ -9,7 +9,6 @@
    <table class="table table-bordered table-hover table-condensed bg-white-only">
     <tr style="font-weight: bold">
       <td>Catégorie</td>
-	  <td>Objectif</td>
       <td>Description</td>
 	  <td>Mesure</td>
 	  <td>Responsable Mesure</td>
@@ -21,7 +20,6 @@
     </tr>
     <tr ng-repeat="obj in objectifs">
         <td class="v-middle">{{obj.categorie.nomCategorie}}</td>
-		<td class="v-middle"></td>
 		<td class="v-middle">{{obj.description}}</td>
 		<td class="v-middle">
 		  <div ng-repeat="eval in obj.evaluationobjectifs">{{eval.mesureObj}}</div>
