@@ -24,7 +24,7 @@ public class Feedback implements Serializable {
 	private String commentaire;
 	private int nbThemes;
 	private int totalPoints;
-	private float noteGlobale;
+	private double noteGlobale;
 
 	//bi-directional many-to-one association to Collaborateur
 	@ManyToOne
@@ -111,11 +111,11 @@ public class Feedback implements Serializable {
 		this.totalPoints = totalPoints;
 	}
 
-	public float getNoteGlobale() {
+	public double getNoteGlobale() {
 		return noteGlobale;
 	}
 
-	public void setNoteGlobale(float noteGlobale) {
+	public void setNoteGlobale(double noteGlobale) {
 		this.noteGlobale = noteGlobale;
 	}
 	//@JsonIgnore

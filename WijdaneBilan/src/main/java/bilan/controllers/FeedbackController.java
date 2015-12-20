@@ -56,7 +56,7 @@ public class FeedbackController {
     
 	//Ajouter un nouveau feedback 
 	@RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
-	public boolean saveFeedback(@RequestBody FeedbackDTO f,HttpServletResponse response) throws MessagingException{	
+	public boolean saveFeedback(@RequestBody FeedbackDTO f,HttpServletResponse response){	
 		Feedback feed = new Feedback() ;
 		Collaborateur c = new Collaborateur() ;
 		Encadrant e = new Encadrant() ;
@@ -75,21 +75,32 @@ public class FeedbackController {
 		 feed.setNbThemes(f.getNbThemes());
 		 feed.setRole(f.getRole());
 		 feed.setTotalPoints(f.getTotalPoints());
-		 
 	      List<Qualification> q=new ArrayList<Qualification>() ;
 	      List<Theme> theme= new ArrayList<Theme>() ;
 	      theme=themeService.toutsThemes() ;
-
+	      int j=0 ;
+	      int summ=0;
 	      for(int i=0 ; i<=7 ; i++)
 	      {
 	    	 q.add(new Qualification()) ;
 	    	 q.get(i).setNomQualification(f.getQualification().get(i).getNomQualification());
 	    	 q.get(i).setRemarque(f.getQualification().get(i).getRemarque()) ;
 	    	 q.get(i).setTheme(theme.get(i)) ;
+	    	 if (f.getQualification().get(i).getNomQualification().trim().equals("Critique"))
+	    		 j++;
+	    	 if (f.getQualification().get(i).getNomQualification().trim().equals("A développer"))
+	    	 {q.get(i).setPoidsQualification(1);
+	    	 j++ ;summ=summ+1;}
+	    	 if (f.getQualification().get(i).getNomQualification().trim().equals("Selon Attente"))
+	    	 { q.get(i).setPoidsQualification(2); j++ ;summ=summ+2;}
+	    	 if (f.getQualification().get(i).getNomQualification().trim().equals("Démontre des Forces"))
+	    	 { q.get(i).setPoidsQualification(3); j++;summ=summ+3;}
+		    	 
 	    	// qualificatioService.ajouterQualification(q.get(i)) ;
 	      }
 	      feed.setQualifications(q);
-	      
+	      feed.setNoteGlobale((double)summ/j);
+	      //feed.setNoteGlobale();
 	      feed=feedbackService.ajouterFeedback(feed) ;
 	      for(int i=0 ; i<=7 ; i++)
 	      {
@@ -97,11 +108,25 @@ public class FeedbackController {
 	      qualificatioService.ajouterQualification(q.get(i)) ;
 	    	  
 	      }
-	      smtpMailSender.send("wijdane.khattat@gmail.com", "Un feedback à été crée", "Un feedback est crée ");
-	      //smtpMailSender.send(c.getManagerrh().getMailUser(), "Un feedback à été crée", "Un feedback est crée ");
+	     //  //smtpMailSender.send(c.getManagerrh().getMailUser(), "Un feedback à été crée", "Un feedback est crée ");
 			
 	      return true;
+	         
     }
+	@RequestMapping(value="/Notify",method=RequestMethod.POST)
+	public int Notify(@RequestBody int  id)
+	{
+		Collaborateur c = new Collaborateur() ;
+		c=collabService.trouverCollab(id) ;
+		 try {
+			smtpMailSender.send(c.getMailUser(), "Un feedback à été crée", "Un feedback est crée ");
+			//smtpMailSender.send(c.getManagerrh().getMailUser(), "Un feedback à été crée", "Un feedback est crée ");
+		 } catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			return 0 ;
+		}
+		 return 1 ; 
+	}
 	//Trouver les feedbacks d'un encadrant x sur un collab y
 	@RequestMapping(value="/encadrantFeedbacks/{idCollaborateur}/{idEncadrant}/{page}",method=RequestMethod.GET)
 	public Page<Feedback> encadrantFeedbacks(@PathVariable("idCollaborateur") int idCollaborateur,

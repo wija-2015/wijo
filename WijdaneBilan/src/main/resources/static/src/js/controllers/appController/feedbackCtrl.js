@@ -1,4 +1,4 @@
-app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme,$scope,$http,$window){
+app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme,$scope,$rootScope,$http,$window){
 	
     Collaborateur.findAll().then(function(d) {
               $scope.collaborateurs = d;
@@ -17,6 +17,7 @@ app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme
 	$scope.feedback.qualification=[] ;
     $scope.inserer_feedback = function () {
 		$scope.feedback.idEncadrant=$window.sessionStorage.idUser;
+		$rootScope.idCollaborateur=$scope.feedback.idCollaborateur ;
     	datas=$scope.feedback ;
     	$http({
     	    url: 'http://localhost:8181/feedbacks/save',
@@ -25,9 +26,22 @@ app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme
     	})
     	.success(function(response) {  
 		       window.alert("Feedback inséré !");
-				$scope.vider();
+			
 				  });
+    	$http({
+    	    url: 'http://localhost:8181/feedbacks/Notify',
+    	    method: 'POST',
+    	    data:$scope.feedback.idCollaborateur
+    	})
+    	.success(function(response) {  
+		    if(response==1)   
+    		window.alert("Le collaborateur et le Manager sont notifiés avec success");
+		    else
+		    	window.alert("Erreur lors de l'envoi du message ") ;
+				  });
+
     };
+  
 	
 	$scope.vider = function () {
 		$scope.feedback=null ;
@@ -54,6 +68,7 @@ app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme
     $http.get("http://localhost:8181/feedbacks/collabFeedbacks/"+$scope.idCollaborateur+"/"+$scope.pageCourante)
 	   .success(function(data){
 	   $scope.collabfeedbacks=data;
+	   
 	   $scope.pages=new Array(data.totalPages);
 	   console.log(data);
 	   });
