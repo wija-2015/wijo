@@ -29,18 +29,12 @@ public class QualificationController {
 @Autowired
 private IQualificationService qualificationService;
 
+//Trouver toutes les qualifications des objectifs 
 @RequestMapping(value="findAll", method = RequestMethod.GET)
-public List<Qualification> getBaps(){
+public List<Qualification> getQualifications(){
 return qualificationService.toutsQualifications();
 }
-@RequestMapping(value="/update/{id}/{nom}", method = RequestMethod.GET)
-public int updateAdmin(@PathVariable("nom") String nom, @PathVariable("id") int id){
-	 return qualificationService.modifierQualification(nom, id);
-}
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteManager(@PathVariable("id") int id){
-   return qualificationService.supprimerQualification(id);
-}
+
 public IQualificationService getQualificationService() {
 	return qualificationService;
 }

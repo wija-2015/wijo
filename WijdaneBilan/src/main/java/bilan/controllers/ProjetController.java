@@ -23,25 +23,20 @@ public class ProjetController {
 @Autowired
 private IProjetService projetService;
 
+//Trouver la liste des projets
 @RequestMapping(value="findAll", method = RequestMethod.GET)
 public List<Projet> getProjets(){
 return projetService.toutsProjets();
 }
+//Ajouter un nouveau projet
 @RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public Projet saveProjet(@RequestBody Projet c, HttpServletResponse response){
 return projetService.ajouterProjet(c);
 }
+//Trouver un projet d'id x
 @RequestMapping(value="/{id}", method = RequestMethod.GET)
 public Projet findProjet(@PathVariable("id") int id){
 	return projetService.trouverProjet(id);
-}
-@RequestMapping(value="/update/{id}/{nom}", method = RequestMethod.GET)
-public int updateProjet(@PathVariable("nom") String nom, @PathVariable("id") int id){
-	 return projetService.modifierProjet(nom, id);
-}
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteProjet(@PathVariable("id") int id){
-   return projetService.supprimerProjet(id);
 }
 public IProjetService getProjetService() {
 	return projetService;

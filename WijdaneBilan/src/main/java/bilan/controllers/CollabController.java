@@ -31,15 +31,17 @@ private ICollabService collabService;
 @Autowired
 private IManagerService managerService ;
 
-
+//Modifier les données d'un collaborateur
 @RequestMapping(value="/update/{id}", method = RequestMethod.PUT)
 public int updateCollab(@PathVariable("id")  int id,@RequestBody Collaborateur c){
 	 return collabService.modifierCollab(c.getNomUser(), c.getPrenomUser(),c.getMailUser(),c.getMatriculeUser(), id);
 }
+//Trouver tous collaborateurs 
 @RequestMapping(value="findAll", method = RequestMethod.GET)
 public List<Collaborateur> getCollabs(){
 return  collabService.toutsCollabs();
 }
+//Pour que le collaborateur puisse s'authentifier
 @RequestMapping(value="signin", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public long signinCollab(@RequestBody Collaborateur c, HttpServletResponse response){
 	 if(collabService.verify(c.getMailUser(), c.getMatriculeUser())==0) {
@@ -48,6 +50,7 @@ public long signinCollab(@RequestBody Collaborateur c, HttpServletResponse respo
 	 else 
 		 return collabService.getIdCollab(c.getMailUser(), c.getMatriculeUser());
 } 
+//Ajouter un nouveau collaborateur
 @RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public Collaborateur saveCollab(@RequestBody CollaborateurDTO c,HttpServletResponse response){
 
@@ -63,13 +66,10 @@ public Collaborateur saveCollab(@RequestBody CollaborateurDTO c,HttpServletRespo
 	collab.setManagerrh(Manager);
 	return collabService.ajouterCollab(collab) ;
 }
+//Trouver un collab en connaissant son id
 @RequestMapping(value="/collab/{id}", method = RequestMethod.GET)
 public Collaborateur findCollab(@PathVariable("id") int id){
 	return collabService.trouverCollab(id);
-}
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteCollab(@PathVariable("id") int id){
-   return collabService.supprimerCollab(id);
 }
 
 public ICollabService getCollabService() {

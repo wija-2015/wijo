@@ -15,9 +15,6 @@ app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme
   	
 	$scope.feedback={} ;
 	$scope.feedback.qualification=[] ;
-	$scope.qualifs=[{"nomQualification":"Critique","poidsQualification":0,"remarque":""},{"nomQualification":"A développer","poidsQualification":1},
-	         {"nomQualification":"Selon Attente","poidsQualification":2},{"nomQualification":"Démontre des Forces","poidsQualification":3}] ;
-
     $scope.inserer_feedback = function () {
 		$scope.feedback.idEncadrant=$window.sessionStorage.idUser;
     	datas=$scope.feedback ;
@@ -53,8 +50,8 @@ app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme
 	  $scope.getEncadrantFeedbacks();
     };
 	
-    $scope.getAdminFeedbacks=function(){
-    $http.get("http://localhost:8181/feedbacks/adminFeedbacks/"+$scope.idCollaborateur+"/"+$scope.pageCourante)
+    $scope.getCollabFeedbacks=function(){
+    $http.get("http://localhost:8181/feedbacks/collabFeedbacks/"+$scope.idCollaborateur+"/"+$scope.pageCourante)
 	   .success(function(data){
 	   $scope.collabfeedbacks=data;
 	   $scope.pages=new Array(data.totalPages);
@@ -63,20 +60,7 @@ app.controller("FeedbackCtrl",function(ManagerCollabs,Collaborateur,Projet,Theme
 	};
 	$scope.gotoPage2=function(page){
       $scope.pageCourante=page;
-	  $scope.getAdminFeedbacks();
-    };
-	
-	$scope.getManagerFeedbacks=function(){
-    $http.get("http://localhost:8181/feedbacks/managerFeedbacks/"+$scope.idCollaborateur+"/"+$scope.pageCourante)
-	   .success(function(data){
-	   $scope.collabfeedbacks=data;
-	   $scope.pages=new Array(data.totalPages);
-	   console.log(data);
-	   });
-	};
-	$scope.gotoPage3=function(page){
-      $scope.pageCourante=page;
-	  $scope.getManagerFeedbacks();
+	  $scope.getCollabFeedbacks();
     };
 	
 	//$scope.collabors=[];

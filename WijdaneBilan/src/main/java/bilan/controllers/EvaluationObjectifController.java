@@ -23,23 +23,17 @@ public class EvaluationObjectifController {
 @Autowired
 private IEvaluationObjectifService evaluationObjectifService;
 
-
+//Trouver l'évaluation d'objectif idO par l'encadrant idE sur le collab idC  
 @RequestMapping(value="/{idC}/{idE}/{idO}", method = RequestMethod.GET)
 public EvaluationObjectif findEvaluationObjectif(@PathVariable("idC") int idC,@PathVariable("idE") int idE,@PathVariable("idO") int idO){
 	return evaluationObjectifService.trouverEvaluationObjectif(idC, idE, idO);
 }
 
-
 public IEvaluationObjectifService getEvaluationObjectifService() {
 	return evaluationObjectifService;
 }
-
-
 public void setEvaluationObjectifService(
 		IEvaluationObjectifService evaluationObjectifService) {
 	this.evaluationObjectifService = evaluationObjectifService;
 }
-
-
-
 }

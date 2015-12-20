@@ -23,17 +23,12 @@ public interface IObjectifRepository extends JpaRepository<Objectif, Long>{
 	@Query("update Objectif a set a.description= :desc where a.idObjectif = :x")
 	public int updateAObjectif(@Param("desc")String desc, @Param("x")int id);
 	
+	//Trouver la liste des objectifs de l'année courante d'un collaborateur x
 	@Query("select distinct o from Objectif o,EvaluationObjectif ev, Bap bap where o.idObjectif= ev.objectif.idObjectif and "
 			+ "ev.collaborateur.idCollaborateur=bap.collaborateur.idCollaborateur and "
-			+ "ev.collaborateur.idCollaborateur like :idC and o.dateObjectif >= all (select b.dateBap from Bap b where "
+			+ "ev.collaborateur.idCollaborateur like :idC and o.dateObjectif >= all (select b.dateCourante from Bap b where "
 			+ " b.collaborateur.idCollaborateur like :idC)")
 	public List<Objectif> ficheCollab(@Param("idC")int idC);
-	
-	/*@Query("select distinct o from Objectif o,EvaluationObjectif ev, Bap bap where o.idObjectif= ev.objectif.idObjectif and "
-			+ "ev.collaborateur.idCollaborateur=bap.collaborateur.idCollaborateur and "
-			+ "ev.collaborateur.idCollaborateur like :idC and bap.collaborateur.idCollaborateur like :idC and "
-			+ "o.dateObjectif > max(bap.dateBap)")
-	public List<Objectif> ficheCollab(@Param("idC")int idC);*/
 	
 	//Recuperer les objectifs à evaluer d'un encadrant
 	@Query("select ev,o from EvaluationObjectif ev, Objectif o where ev.encadrant.idEncadrant like :idE and "

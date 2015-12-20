@@ -26,27 +26,22 @@ public class ThemeController {
 
 @Autowired
 private IThemeService themeService;
-
+//Trouver tous les themes
 @RequestMapping(value="findAll", method = RequestMethod.GET)
 public List<Theme> getBaps(){
 return themeService.toutsThemes();
 }
+//Ajouter un nouveau theme
 @RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public Theme saveTheme(@RequestBody Theme t, HttpServletResponse response){
 return themeService.ajouterTheme(t);
 }
+//Trouver le theme d'id x
 @RequestMapping(value="/{id}", method = RequestMethod.GET)
 public Theme findAdmin(@PathVariable("id") int id){
 	return themeService.trouverTheme(id);
 }
-@RequestMapping(value="/update/{id}/{nom}", method = RequestMethod.GET)
-public int updateAdmin(@PathVariable("nom") String nom, @PathVariable("id") int id){
-	 return themeService.modifierTheme(nom, id);
-}
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteManager(@PathVariable("id") int id){
-   return themeService.supprimerTheme(id);
-}
+
 public IThemeService getThemeService() {
 	return themeService;
 }

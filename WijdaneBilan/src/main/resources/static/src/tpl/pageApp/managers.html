@@ -32,10 +32,13 @@
           </tr>
        </thead>	
        <tbody>	   
-		  <tr ng-repeat="c in managers"><td editable-text="c.nomUser">{{c.nomUser || empty}}</td><td editable-text="c.prenomUser">{{c.prenomUser || empty}}</td>
-		  <td editable-text="c.matriculeUser">{{c.matriculeUser || empty}}</td><td editable-text="c.mailUser">{{c.mailUser || empty}}</td>
-		  <td><button class="btn btn-info" ng-click="modifier(c)">Modifier</button></td>
-		  </tr>
+		<tr ng-repeat="c in managers" class="list-icon">
+		  <td editable-text="c.nomUser">{{c.nomUser || empty}}<i class="fa fa-edit editIcon"></i></td>
+		  <td editable-text="c.prenomUser">{{c.prenomUser || empty}}<i class="fa fa-edit editIcon"></i></td>
+		  <td editable-text="c.matriculeUser">{{c.matriculeUser || empty}}<i class="fa fa-edit editIcon"></i></td>
+		  <td editable-text="c.mailUser">{{c.mailUser || empty}}<i class="fa fa-edit editIcon"></i></td>
+		  <td><button class="btn btn-info" ng-click="modifier(c)">Enregistrer</button></td>
+		</tr>
        </tbody>
 	   <tfoot class="hide-if-no-paging">
           <tr>

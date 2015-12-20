@@ -19,10 +19,10 @@
 <div ng-if="collab">        
    <table class="table table-bordered table-hover table-condensed bg-white-only">
     <tr style="font-weight: bold">
-	  <td>Date:</td>
-      <td>Catégorie</td>
-      <td>Description</td>
-	  <td>Mesure</td>
+	  <td>Année Fiche Objectifs</td>
+      <td>Catégorie Objectif</td>
+      <td>Description Objectif</td>
+	  <td>Mesure Objectif</td>
 	  <td>Responsable Mesure</td>
 	  <td>Poids</td>
       <td>Autoriser la lecture</td>
@@ -54,13 +54,13 @@
  		                    <input type="number" class="form-control" placeholder="Poids" ng-model="objectif.evaluations[2].poidsObj" required >
 		</td>
 		
-		<td class="v-middle">
-		<!--     <input type="checkbox" name="autoriser" ng-value="oui" ng-model="objectif.autoriser" ng-init="objectif.autoriser='non'"/>Oui 
-		                    <input type="radio" name="autoriser" value="non" checked="checked"/>Non   -->
+		<td class="checkbox">
+         <label class="i-checks">
+		   <input type="checkbox" ng-model="objectif.autoriser"/><i></i>Oui 
+	     </label>                
 		</td> 
-       <td class="v-middle"><button class="btn btn-info" ng-click="inserer_objectif()">Envoyer</button></td>
-		
-    </tr>
+       <td class="v-middle"><button class="btn btn-info" ng-click="inserer_objectif()">Enregistrer</button></td>
+    </tr>{{objectif.autoriser}}
   </table>
 	   
 	</div>

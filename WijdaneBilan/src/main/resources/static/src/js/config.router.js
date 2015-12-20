@@ -108,6 +108,11 @@ angular.module('app')
                   templateUrl: 'tpl/pageApp/ajouterFicheObjectifs.html' ,
                   access: { requiredAuthentication: true }
               })
+			  .state('app.ajouterBap', {
+                  url: '/AjouterBap',
+                  templateUrl: 'tpl/pageApp/ajouterBap.html' ,
+                  access: { requiredAuthentication: true }
+              })
 			  .state('app.consulterFicheObjectifsManager', {
                   url: '/consulterFicheManager',
                   templateUrl: 'tpl/pageApp/consulterFicheObjectifsManager.html',

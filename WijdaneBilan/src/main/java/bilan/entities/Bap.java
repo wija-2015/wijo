@@ -14,16 +14,12 @@ public class Bap implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idBap;
-
 	private Date dateBap;
-
 	private int mode;
-
 	private float noteFinaleBap;
-
 	private String poste;
-
 	private String status;
+	private Date dateCourante ;
 
 	//bi-directional many-to-one association to Collaborateur
 	@ManyToOne
@@ -101,6 +97,16 @@ public class Bap implements Serializable {
 
 	public void setCollaborateur(Collaborateur collaborateur) {
 		this.collaborateur = collaborateur;
+	}
+
+
+	public Date getDateCourante() {
+		return dateCourante;
+	}
+
+
+	public void setDateCourante(Date dateCourante) {
+		this.dateCourante = dateCourante;
 	}
 
 }

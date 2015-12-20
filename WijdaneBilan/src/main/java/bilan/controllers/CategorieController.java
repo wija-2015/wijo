@@ -25,27 +25,21 @@ public class CategorieController {
 @Autowired
 private ICategorieService categorieService;
 
+//Avoir la liste des categories
 @RequestMapping(value="findAll", method = RequestMethod.GET)
 public List<Categorie> getCategories(){
 return categorieService.toutsCategories();
 }
+//Ajouter une nouvelle categorie à la base de données
 @RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public Categorie saveCategorie(@RequestBody Categorie c, HttpServletResponse response){
 return categorieService.ajouterCategorie(c);
 }
+//Trouver une categorie d'id x
 @RequestMapping(value="/{id}", method = RequestMethod.GET)
 public Categorie findCategorie(@PathVariable("id") int id){
 	return categorieService.trouverCategorie(id);
 }
-@RequestMapping(value="/update/{id}/{mode}", method = RequestMethod.GET)
-public int updateCategorie(@PathVariable("mode") String mode, @PathVariable("id") int id){
-	 return categorieService.modifierCategorie(mode, id);
-}
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteCategorier(@PathVariable("id") int id){
-   return categorieService.supprimerCategorie(id);
-}
-
 
 public ICategorieService getCategorieService() {
 	return categorieService;

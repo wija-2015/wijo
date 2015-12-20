@@ -32,11 +32,12 @@ private IEncadrantService encadrantService;
 @Autowired
 private IProfilService profilService;
 
+//Modifier les données d'un encadrant 
 @RequestMapping(value="/update/{id}", method = RequestMethod.PUT)
 public int updateEncadrant(@PathVariable("id")  int id,@RequestBody Encadrant c){
 	 return encadrantService.modifierEncadrant(c.getNomUser(), c.getPrenomUser(),c.getMailUser(),c.getMatriculeUser(), id);
 }
-
+//S'authentifier
 @RequestMapping(value="signin", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public long signinCollab(@RequestBody Encadrant c, HttpServletResponse response){
 	 if(encadrantService.verify(c.getMailUser(), c.getMatriculeUser())==0) {
@@ -45,11 +46,12 @@ public long signinCollab(@RequestBody Encadrant c, HttpServletResponse response)
 	 else 
 		 return encadrantService.getIdEncadrant(c.getMailUser(), c.getMatriculeUser());
 } 
-
+//Avoir tous les encadrants
 @RequestMapping(value="findAll", method = RequestMethod.GET)
 public List<Encadrant> getManagers(){
 return encadrantService.toutsEncadrants();
 }
+//Ajouter un nouvel encadrant
 @RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public Encadrant saveEncadrant(@RequestBody EncadrantDTO c,HttpServletResponse response){
 
@@ -64,19 +66,17 @@ public Encadrant saveEncadrant(@RequestBody EncadrantDTO c,HttpServletResponse r
 	enc.setProfil(p);
 	return encadrantService.ajouterEncadrant(enc) ;
 }
+//Trouver encadrant d'id x
 @RequestMapping(value="/{id}", method = RequestMethod.GET)
-public Encadrant findCollab(@PathVariable("id") int id){
+public Encadrant findEncadrant(@PathVariable("id") int id){
 	return encadrantService.trouverEncadrant(id);
 }
-
-@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-public int deleteManager(@PathVariable("id") int id){
-   return encadrantService.supprimerEncadrant(id);
-}
+//Trouver les collaborateurs d'un encadrants
 @RequestMapping(value="/collabs/{id}", method = RequestMethod.GET)
-public List<Collaborateur> findManagerCollabs(@PathVariable("id") int id){
+public List<Collaborateur> findEncadrantCollabs(@PathVariable("id") int id){
 	return encadrantService.trouverEncadrantCollabs(id);
 }
+
 public IEncadrantService getEncadrantService() {
 	return encadrantService;
 }

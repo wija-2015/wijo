@@ -4,12 +4,12 @@
 <div class="wrapper-md" ng-controller="FeedbackCtrl">
 	<!--<button class="btn m-b-xs btn-sm btn-primary btn-addon" data-target="#ajouterCollab" data-toggle="modal">Ajouter un collaborateur</button>
   -->
-   <div class="panel b-a">{{colls.totalPages}}
+   <div class="panel b-a">
          
           <div class="panel-body">
 		       <div class="col-sm-2">Choisir Matricule du Collaborateur</div>
 			   <form>
-			   <div class="col-sm-2">		<select class="form-control m-t"	ng-model="idCollaborateur" ng-change="getManagerFeedbacks()">
+			   <div class="col-sm-2">		<select class="form-control m-t"	ng-model="idCollaborateur" ng-change="getCollabFeedbacks()">
 			          <option ng-repeat="c in colls" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
 		           </select> 
 			   </div>
@@ -34,8 +34,8 @@
 			 <div class="row"><div class="col-sm-6">Poste Actuel </div><div class="col-sm-6">{{feed.collaborateur.poste}}</div></div>
             <div class="row"><div class="col-sm-6">Code Projet</div><div class="col-sm-6">{{feed.projet.codeProjet}}</div></div>
 			 <div class="row"><div class="col-sm-6">Nom Projet</div><div class="col-sm-6">{{feed.projet.nomProjet}}</div></div>
-			 <div class="row"><div class="col-sm-6">Date Début d'intervention </div><div class="col-sm-6">{{feed.dateDebut}}</div></div>
-            <div class="row"><div class="col-sm-6">Date Fin d'intervention</div><div class="col-sm-6">{{feed.dateFin}}</div></div>
+			 <div class="row"><div class="col-sm-6">Date Début d'intervention </div><div class="col-sm-6">{{feed.dateDebut|date:'yyyy-MM-dd'}}</div></div>
+            <div class="row"><div class="col-sm-6">Date Fin d'intervention</div><div class="col-sm-6">{{feed.dateFin|date:'yyyy-MM-dd'}}</div></div>
 			 <div class="row"><div class="col-sm-6">Role</div><div class="col-sm-6">{{feed.role}}</div></div>
 			 <div class="row"><div class="col-sm-6">Nombre de jours valorisés</div><div class="col-sm-6">{{feed.nbJours}}</div></div>
 			 <div class="row"><div class="col-sm-6">Commentaire Général </div><div class="col-sm-6">{{feed.commentaire}}</div></div>
@@ -44,7 +44,7 @@
 		  
 		  <ul ng-show="collabfeedbacks.totalPages>1" class="container nav nav-pills">
             <li class="clickable" ng-repeat="p in pages track by $index" ng-class="{active:$index==pageCourante}">
-              <a ng-click="gotoPage3($index)">{{$index}}</a>
+              <a ng-click="gotoPage2($index)">{{$index}}</a>
             </li>
      </ul>
       </div>

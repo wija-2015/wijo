@@ -52,10 +52,7 @@ private ICollabService collaborateurService;
 @Autowired
 private IManagerService managerService;
 
-@RequestMapping(value="findAll", method = RequestMethod.GET)
-public List<Objectif> getObjectifs(){
-return objectifService.toutsObjectifs();
-}
+//Ajouter un nouvel objectif
 @RequestMapping(value="/save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 public boolean saveObjectif(@RequestBody ObjectifDTO o,HttpServletResponse response){	
 	Objectif obj = new Objectif() ;
@@ -100,19 +97,22 @@ public boolean saveObjectif(@RequestBody ObjectifDTO o,HttpServletResponse respo
       
 	 return true;
       }
+//Trouver l'ensemble des objectifs d'un collab x
 @RequestMapping(value="/ficheCollab/{idCollaborateur}",method=RequestMethod.GET)
 public List<Objectif> getFicheObjectifs(@PathVariable("idCollaborateur") int idCollaborateur) {	
 	return objectifService.ficheCollab(idCollaborateur);
 }
+//Trouver la liste des objectifs à évaluer par un encadrants x
 @RequestMapping(value="/encadrantObjectifs/{idE}",method=RequestMethod.GET)
 public List<Objectif> encadrantObjectifs(@PathVariable("idE") int idE) {	
 return objectifService.encadrantObjectifs(idE);
 }
-
+//Trouver la liste des objectifs déja évalués par un encadrants x
 @RequestMapping(value="/encadrantObjectifsEvalues/{idE}",method=RequestMethod.GET)
 public List<Objectif> encadrantObjectifsEvalues(@PathVariable("idE") int idE) {	
 return objectifService.encadrantObjectifsEvalues(idE);
 }
+//Evaluer un objectif par un encadrant x
 @RequestMapping(value="/evaluerObjectif/{idEvaluation}", method = RequestMethod.PUT,consumes={"application/json"},produces ={"application/json"})
 public int evaluer(@PathVariable("idEvaluation")  int idEvaluation,@RequestBody EvaluationObjectifDTO dto){
 	 return evaluationObjectifService.evaluerObjectif(dto, idEvaluation);

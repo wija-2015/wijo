@@ -11,13 +11,13 @@ public class ObjectifDTO {
 	private int idCategorie;
 	private int idCollaborateur;
 	private int idManager;
-	private int autoriser;
+	private boolean autoriser;
 	private Date dateObjectif;
 	
-	public int getAutoriser() {
+	public boolean getAutoriser() {
 		return autoriser;
 	}
-	public void setAutoriser(int autoriser) {
+	public void setAutoriser(boolean autoriser) {
 		this.autoriser = autoriser;
 	}
 	public int getIdManager() {

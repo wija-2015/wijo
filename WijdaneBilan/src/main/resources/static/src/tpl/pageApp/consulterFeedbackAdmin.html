@@ -7,7 +7,7 @@
           <div class="panel-body">
 		       <div class="col-sm-2">Choisir Matricule du Collaborateur</div>
 			   <form>
-			   <div class="col-sm-2">		<select class="form-control m-t"	ng-model="idCollaborateur" ng-change="getAdminFeedbacks()">
+			   <div class="col-sm-2">		<select class="form-control m-t"	ng-model="idCollaborateur" ng-change="getCollabFeedbacks()">
 			          <option ng-repeat="c in collaborateurs" ng-value="c.idCollaborateur">{{c.matriculeUser}}</option>
 		           </select> 
 			   </div>

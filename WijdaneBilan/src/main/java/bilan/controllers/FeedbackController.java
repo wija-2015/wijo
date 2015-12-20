@@ -53,7 +53,8 @@ public class FeedbackController {
 	private IThemeService themeService;
 	@Autowired
 	private SmtpMailSender smtpMailSender ; 
-
+    
+	//Ajouter un nouveau feedback 
 	@RequestMapping(value="save", method = RequestMethod.POST,consumes={"application/json"},produces ={"application/json"})
 	public boolean saveFeedback(@RequestBody FeedbackDTO f,HttpServletResponse response) throws MessagingException{	
 		Feedback feed = new Feedback() ;
@@ -83,7 +84,6 @@ public class FeedbackController {
 	      {
 	    	 q.add(new Qualification()) ;
 	    	 q.get(i).setNomQualification(f.getQualification().get(i).getNomQualification());
-	    	 q.get(i).setPoidsQualification(f.getQualification().get(i).getPoidsQualification());
 	    	 q.get(i).setRemarque(f.getQualification().get(i).getRemarque()) ;
 	    	 q.get(i).setTheme(theme.get(i)) ;
 	    	// qualificatioService.ajouterQualification(q.get(i)) ;
@@ -92,7 +92,8 @@ public class FeedbackController {
 	      
 	      feed=feedbackService.ajouterFeedback(feed) ;
 	      for(int i=0 ; i<=7 ; i++)
-	      {q.get(i).setFeedback(feed);
+	      {
+	      q.get(i).setFeedback(feed);
 	      qualificatioService.ajouterQualification(q.get(i)) ;
 	    	  
 	      }
@@ -100,39 +101,25 @@ public class FeedbackController {
 	      //smtpMailSender.send(c.getManagerrh().getMailUser(), "Un feedback à été crée", "Un feedback est crée ");
 			
 	      return true;
-}
-	
+    }
+	//Trouver les feedbacks d'un encadrant x sur un collab y
 	@RequestMapping(value="/encadrantFeedbacks/{idCollaborateur}/{idEncadrant}/{page}",method=RequestMethod.GET)
 	public Page<Feedback> encadrantFeedbacks(@PathVariable("idCollaborateur") int idCollaborateur,
 			                               @PathVariable("idEncadrant") int idEncadrant,
 			                               @PathVariable("page") int page) {	
 		return feedbackService.encadrantFeedbacks(idCollaborateur, idEncadrant, new PageRequest(page, 1));
 	}
-	@RequestMapping(value="/adminFeedbacks/{idCollaborateur}/{page}",method=RequestMethod.GET)
+	//Trouver les feedbacks faites sur un collab x
+	@RequestMapping(value="/collabFeedbacks/{idCollaborateur}/{page}",method=RequestMethod.GET)
 	public Page<Feedback> adminFeedbacks(@PathVariable("idCollaborateur") int idCollaborateur,	                           
 			                               @PathVariable("page") int page) {
 		return feedbackService.adminFeedbacks(idCollaborateur, new PageRequest(page, 1));
 	}
-	@RequestMapping(value="/managerFeedbacks/{idCollaborateur}/{page}",method=RequestMethod.GET)
-	public Page<Feedback> managerFeedbacks(@PathVariable("idCollaborateur") int idCollaborateur,
-			                               @PathVariable("page") int page) {	
-		return feedbackService.managerFeedbacks(idCollaborateur, new PageRequest(page, 1));
-	}
-@RequestMapping(value="/collabFeedbacks2",method=RequestMethod.GET)
-public List<Feedback> collabFeedbacks2() {
-	return feedbackService.collabFeedback2();
-}
 
-
-public IFeedbackService getFeedbackService() {
-	return feedbackService;
-}
-
-
-public void setFeedbackService(IFeedbackService feedbackService) {
-	feedbackService = feedbackService;
-}
-
-
-
+    public IFeedbackService getFeedbackService() {
+	   return feedbackService;
+    }
+    public void setFeedbackService(IFeedbackService feedbackService) {
+	  feedbackService = feedbackService;
+    }
 }

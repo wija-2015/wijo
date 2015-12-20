@@ -35,10 +35,6 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 		
 		return feedbackRepository.save(feed);
 	}
-	@Override
-	public List<Feedback> collabFeedback2() {
-		return feedbackRepository.collabFeedback2();
-	}
 	
 	public IFeedbackRepository getFeedbackRepository() {
 		return feedbackRepository;
@@ -56,10 +52,6 @@ public class IFeedbackServiceImpl implements IFeedbackService {
 	public Page<Feedback> adminFeedbacks(int idCollab,Pageable p) {
 		
 		return feedbackRepository.adminFeedbacks(idCollab,p);
-	}
-	@Override
-	public Page<Feedback> managerFeedbacks(int idCollab,Pageable p) {
-		return feedbackRepository.managerFeedbacks(idCollab, p);
 	}
 	@Override
 	public Page<Feedback> collabFeedbacks(int idC, Pageable p) {

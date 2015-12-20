@@ -18,6 +18,10 @@ body {
 *:focus {
   outline: 0 !important;
 }
+.editIcon{
+	float:right ;
+	position:relative; 
+}
 
 .h1,
 .h2,

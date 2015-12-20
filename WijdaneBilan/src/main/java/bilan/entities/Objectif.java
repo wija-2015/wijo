@@ -16,7 +16,7 @@ public class Objectif implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idObjectif;
 	private String description;
-	private int autoriser;
+	private boolean autoriser;
 	private Date dateObjectif;
 	
 	//bi-directional many-to-one association to Evaluationobjectif
@@ -86,11 +86,11 @@ public class Objectif implements Serializable {
 		this.evaluationobjectifs = evaluationobjectifs;
 	}
 
-	public int getAutoriser() {
+	public boolean getAutoriser() {
 		return autoriser;
 	}
 
-	public void setAutoriser(int autoriser) {
+	public void setAutoriser(boolean autoriser) {
 		this.autoriser = autoriser;
 	}
 
